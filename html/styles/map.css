@@ -1,9 +1,27 @@
 :root {
   --block-size: 7vh;
-  --dot-size: calc(var(--block-size) / 8);
-  --powerdot-size: calc(var(--block-size) / 3);
-  --player-size: calc(var(--block-size) / 3 * 2);
-  --ghost-size: var(--player-size);
+  /* --player-size: calc(var(--block-size) / 3 * 2); */
+}
+
+.cell.cloaked {
+  z-index: 100;
+  background-image: none;
+}
+
+.swamp {
+  background-image: url('../graphics/tile-swamp-1.png');
+}
+
+.desert {
+  background-image: url('../graphics/tile-desert-1.png');
+}
+
+.forest {
+  background-image: url('../graphics/tile-forest-1.png');
+}
+
+.mountain {
+  background-image: url('../graphics/tile-mountain-1.png');
 }
 
 body {

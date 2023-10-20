@@ -8,7 +8,7 @@ function isSamePosition (a, b) {
 export class GameOn extends State {
   async loadView() {
     this.screen.classList = ["gameon"]
-    this.screen.apply(this.gameMap)
+    this.screen.apply(this.game.gameMap)
   }
 
   execute () {
