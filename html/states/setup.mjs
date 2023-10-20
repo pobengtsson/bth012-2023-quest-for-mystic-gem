@@ -11,7 +11,7 @@ function randomPosition (dim, prng) {
 
 export class Setup extends State {
   async loadView () {
-    const response = await fetch('../welcome.html')
+    const response = await fetch('welcome.html')
     const welcomeScreenHtml = await response.text()
     this.screen.classList = ["welcome"]
     this.screen.htmlTemplate = welcomeScreenHtml
