@@ -1,5 +1,5 @@
 :root {
-  --block-size: 7vh;
+  --block-size: 5vh;
   /* --player-size: calc(var(--block-size) / 3 * 2); */
 }
 
