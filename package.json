@@ -1,0 +1,51 @@
+{
+  "name": "Quest for the Mystic Gem",
+  "version": "0.1.0",
+  "description": "The game designed in the lectures of 2023",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "game": "cross-env NODE_OPTIONS=--experimental-vm-modules node index.js",
+    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --watch",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pobengtsson/bth012-2023-quest-for-mystic-gem.git"
+  },
+  "keywords": [
+    "javascript",
+    "game",
+    "teaching",
+    "ghost",
+    "gobbler"
+  ],
+  "author": "Per-Olof Bengtsson",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/pobengtsson/bth012-2023-quest-for-mystic-gem"
+  },
+  "homepage": "https://github.com/pobengtsson/bth012-2023-quest-for-mystic-gem#readme",
+  "jest": {
+    "transform": {},
+    "roots": [
+      "<rootDir>/html/",
+      "<rootDir>/tests/"
+    ],
+    "modulePaths": [],
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>/html"
+    ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "eslint": "^8.51.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jest": "^27.4.2",
+    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-promise": "^6.1.1"
+  }
+}
