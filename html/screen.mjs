@@ -1,12 +1,12 @@
 function scoreBarHtmlText() {
    return `
-      <div class="score">
-         <div>Damage</div>
-         <div id="player-score">0</div>
-      </div>
-      <div class="high-score">
+      <div class="health">
          <div>Health</div>
-         <div id="high-score">0</div>
+         <div id="player-health">0</div>
+      </div>
+      <div class="damage">
+         <div>Damage</div>
+         <div id="player-damage">0</div>
       </div>
       `
 }
@@ -40,6 +40,10 @@ function styleTileBasedOn(playerPos, tilePos, diamondPos, tile) {
    }
 }
 
+function formatScore(digitCount, score) {
+   return score.toString().padStart(digitCount, "0");
+}
+
 export class Screen {
    constructor(div) {
       this.root = div
@@ -52,6 +56,11 @@ export class Screen {
    set htmlTemplate(htmlFragmentText) {
       this.root.replaceChildren();
       this.root.innerHTML = htmlFragmentText
+   }
+
+   updateHealth(health) {
+      const div = document.getElementById('player-health')
+      div.innerHTML = formatScore(4, health)
    }
 
    apply(gameMap, diamondPos) {

@@ -80,46 +80,22 @@ body {
   background-size: cover;
 }
 
-.dot {
-  width: var(--dot-size);
-  height: var(--dot-size);
-  background-color: #FFD700;
-  border-radius: 50%;
-  margin: auto;
-}
-
-.powerdot {
-  width: var(--powerdot-size);
-  height: var(--powerdot-size);
-  background-color: #ffa600;
-  border-radius: 50%;
-  margin: auto;
-}
-
-.ghost {
-  width: var(--ghost-size);
-  height: var(--ghost-size);
-  background-color: #ff0000;
-  border-radius: 50%;
-  margin: auto;
-}
-
 .topbar {
   color: white;
   font-family: 'Press_Start_2P';
   font-size: 2vh;
 }
 
-.score {
+.health {
   float: left;
   text-align: left;
 }
 
-.topbar > .high-score {
+.topbar > .damage {
   float: right;
   text-align: right;
 }
 
-#player-score {
+#player-health {
   margin: 1vh;
 }

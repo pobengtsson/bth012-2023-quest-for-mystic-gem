@@ -9,6 +9,7 @@ export class GameOn extends State {
   async loadView() {
     this.screen.classList = ["gameon"]
     this.screen.apply(this.game.gameMap, this.game.gemPos)
+    this.screen.updateHealth(this.game.player.health)
   }
 
   gemFound () {
@@ -45,6 +46,7 @@ export class GameOn extends State {
             console.log('Default')
             break
       }
+      this.screen.updateHealth(this.game.player.health)
       this.screen.update(this.game.gameMap)
     }
     if (this.gemFound()) {
