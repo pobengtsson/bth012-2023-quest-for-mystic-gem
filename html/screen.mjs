@@ -1,3 +1,45 @@
+function scoreBarHtmlText() {
+   return `
+      <div class="score">
+         <div>Damage</div>
+         <div id="player-score">0</div>
+      </div>
+      <div class="high-score">
+         <div>Health</div>
+         <div id="high-score">0</div>
+      </div>
+      `
+}
+
+function createScoreBarDiv () {
+   // the top bar for showing scores n stuff
+   const div = document.createElement('div')
+   div.classList.add('topbar')
+   div.innerHTML = scoreBarHtmlText()
+   return div
+}
+
+function createScreenContainer () {
+   const div = document.createElement('div')
+   div.classList.add('screen')
+   div.id = 'screen'
+   return div
+}
+
+function styleTileBasedOn(playerPos, tilePos, diamondPos, tile) {
+   if (playerPos.x === tilePos.x && playerPos.y === tilePos.y) {
+      return ['player']
+   }
+   if (diamondPos.x === tilePos.x && diamondPos.y === tilePos.y) {
+      return ['diamond']
+   }
+   if (tile.isVisited) {
+      return [tile.terrain]
+   } else {
+      return ['cloaked']
+   }
+}
+
 export class Screen {
    constructor(div) {
       this.root = div
@@ -12,48 +54,19 @@ export class Screen {
       this.root.innerHTML = htmlFragmentText
    }
 
-   // updateScore(score) {
-   //    var scoreSpan = document.getElementById('player-score')
-   //    scoreSpan.innerHTML = formatScore(5, score)
-   // }
-
    apply(gameMap, diamondPos) {
       this.root.replaceChildren();
-   //    // the top bar for showing scores n stuff
-      this.scoreBarDiv = document.createElement('div')
-      this.scoreBarDiv.classList.add('topbar')
-      this.scoreBarDiv.innerHTML = `
-      <div class="score">
-         <div>Damage</div>
-         <div id="player-score">0</div>
-      </div>
-      <div class="high-score">
-         <div>Health</div>
-         <div id="high-score">0</div>
-      </div>
-      `
+      this.scoreBarDiv = createScoreBarDiv() // the bar with health and damage
       this.root.appendChild(this.scoreBarDiv)
 
-      // the game map container
-      this.container = document.createElement('div')
-      this.container.classList.add('screen')
-      this.container.id = 'screen'
+      this.container = createScreenContainer() // the game map container
       this.root.appendChild(this.container)
       for (var i = 0; i < gameMap.tiles.length; i++) {
          for (var j = 0; j < gameMap.tiles[i].length; j++) {
             var cellDiv = document.createElement('div')
             cellDiv.classList.add("cell")
-            cellDiv.classList.add(gameMap.tiles[i][j].terrain)
-            if (!gameMap.tiles[i][j].isVisited)
-            {
-               cellDiv.classList.add("cloaked")
-            }
-            if (gameMap.playerPos.x === i && gameMap.playerPos.y === j) {
-               cellDiv.classList = ['player']
-            }
-            if (diamondPos.x === j && diamondPos.y === i) {
-               cellDiv.classList = ['diamond']
-            }
+            const styleClasses = styleTileBasedOn(gameMap.playerPos, {x: j, y: i}, diamondPos, gameMap.tiles[i][j])
+            styleClasses.forEach ((styleClass) => cellDiv.classList.add(styleClass))
             this.container.appendChild(cellDiv)
          }
       }
