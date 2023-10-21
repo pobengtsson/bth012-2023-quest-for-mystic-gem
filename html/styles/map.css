@@ -24,6 +24,10 @@
   background-image: url('../graphics/tile-mountain-1.png');
 }
 
+.player {
+  background-image: url('../graphics/sword.jpeg');
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -53,6 +57,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: black;
+  background-size: cover;
 }
 
 .wall {
@@ -60,11 +65,17 @@ body {
 }
 
 .player {
-  height: var(--player-size);
+  /* height: var(--player-size);
   width: var(--player-size);
   border-radius: 50%;
-  background-color: #ffea00;
+  background-color: #ffea00; */
+  width: var(--block-size);
+  height: var(--block-size);
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
   margin: auto;
+  background-size: cover;
 }
 
 .dot {

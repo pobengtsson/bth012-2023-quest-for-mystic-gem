@@ -1,5 +1,6 @@
 import { Setup } from './states/setup.mjs'
 import { GameOn } from './states/gameon.mjs'
+import { GameWon } from './states/gamewon.mjs'
 
 export class Game {
   constructor (theWindow, screen, logger, prng = Math.random) {
@@ -15,6 +16,10 @@ export class Game {
 
   startGame () {
     this.setState(new GameOn(this, this.screen))
+  }
+
+  gameWon () {
+    this.setState(new GameWon(this, this.screen))
   }
 
   async setState(newState) {

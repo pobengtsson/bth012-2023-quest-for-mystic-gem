@@ -7,6 +7,6 @@ export class State {
     this.screen = aScreen
   }
 
-  execute () { }
+  loadView () { }
   handleEvent (event) { }
 }

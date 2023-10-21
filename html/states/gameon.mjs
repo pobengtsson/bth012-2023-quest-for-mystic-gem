@@ -11,52 +11,44 @@ export class GameOn extends State {
     this.screen.apply(this.game.gameMap)
   }
 
-  execute () {
-    do {
-      this.makeATurn()
-    } while (!this.gemFound())
-    this.initiateGameEnd()
-  }
-
-  makeATurn () {
-    // this.game.renderer(this.game.map, this.game.printLine, this.game.symboliser)
-    this.game.printLine('Where do you want to go?')
-    // const key = await this.readline.question('(n) north, (s) south, (w) west, (e) east')
-    // this.keypressed(key)
-  }
-
-  initiateGameEnd () {
-    this.game.setState(new GameWon(this.game, this.readline))
-  }
-
   gemFound () {
-    return isSamePosition(this.game.map.playerPos, this.game.gemPos)
+    return isSamePosition(this.game.gameMap.playerPos, this.game.gemPos)
   }
 
-  keypressed (str) {
-    switch (str) {
-      case 'n':
-        if (this.game.map.playerPos.y > 0) {
-          this.game.map.playerPos.y -= 1
-        }
-        break
-      case 'w':
-        if (this.game.map.playerPos.x > 0) {
-          this.game.map.playerPos.x -= 1
-        }
-        break
-      case 'e':
-        if (this.game.map.playerPos.x < (this.game.map.dimensions.width - 1)) {
-          this.game.map.playerPos.x += 1
-        }
-        break
-      case 's':
-        if (this.game.map.playerPos.y < (this.game.map.dimensions.height - 1)) {
-          this.game.map.playerPos.y += 1
-        }
-        break
-      default:
-        break
-    }
+  handleEvent (event) {
+    console.log(event)
+    update_based_on_event: {
+      switch (event.key) {
+         case 'ArrowRight':
+         case 'ArrowLeft':
+         case 'ArrowDown':
+         case 'ArrowUp':
+            event.preventDefault()
+            event.stopPropagation()
+            if (!this.gemFound() && this.game.gameMap.isValidPlayerMove(this.game.gameMap.playerPos, event.key)) {
+               const nextPosition = this.game.gameMap.nextCoordinates(this.game.gameMap.playerPos, event.key)
+               this.game.gameMap.moveFromTo(this.game.gameMap.playerPos, nextPosition)
+               this.game.gameMap.playerPos = nextPosition
+            } else {
+               break update_based_on_event
+            }
+               break
+            case 'Escape':
+            case 'Q':
+            case 'q':
+            case 'P':
+            case 'p':
+               console.log(`Received event: ${event.key}`)
+               // this.gameData.setState(new PausedState(this.gameData))
+            break
+         default:
+            console.log('Default')
+            break
+      }
+      this.screen.update(this.game.gameMap)
+      if (this.gemFound()) {
+         this.game.gameWon()
+      }
+   }
   }
 }

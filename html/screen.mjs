@@ -48,20 +48,26 @@ export class Screen {
             {
                cellDiv.classList.add("cloaked")
             }
+            if (gameMap.playerPos.x === i && gameMap.playerPos.y === j) {
+               cellDiv.classList = ['player']
+            }
             this.container.appendChild(cellDiv)
          }
       }
    }
 
-   // update(gameMap) {
-   //    const cells = this.container.children
-   //    const changeList = gameMap.popChanges()
-   //    changeList.forEach((change) => {
-   //       cells[(change.y*gameMap.xSize)+change.x].classList = "cell"
-   //       cells[(change.y*gameMap.xSize)+change.x].classList.add(gameMap.classesAtPosition(change.x, change.y))
-   //       // cells[(change.y*this.xSize)+change.x].classList.add(mazeVal.PLAYER)
-   //    })
-   // }
+   update(gameMap) {
+      const cells = this.container.children
+      const changeList = gameMap.popChanges()
+      changeList.forEach((change) => {
+         console.log(`${change.y} ${gameMap.dimensions.width} ${change.x}`)
+         cells[(change.y*gameMap.dimensions.width)+change.x].classList = "cell"
+         cells[(change.y*gameMap.dimensions.height)+change.x].classList.add(gameMap.classesAtPosition(change.x, change.y))
+         if (gameMap.playerPos.x === change.x && gameMap.playerPos.y === change.y) {
+            cells[(change.y*gameMap.dimensions.height)+change.x].classList = ['player']
+         }
+      })
+   }
 }
 
 // export function formatScore(digitCount, score) {
