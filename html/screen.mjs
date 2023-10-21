@@ -17,7 +17,7 @@ export class Screen {
    //    scoreSpan.innerHTML = formatScore(5, score)
    // }
 
-   apply(gameMap) {
+   apply(gameMap, diamondPos) {
       this.root.replaceChildren();
    //    // the top bar for showing scores n stuff
       this.scoreBarDiv = document.createElement('div')
@@ -51,6 +51,9 @@ export class Screen {
             if (gameMap.playerPos.x === i && gameMap.playerPos.y === j) {
                cellDiv.classList = ['player']
             }
+            if (diamondPos.x === j && diamondPos.y === i) {
+               cellDiv.classList = ['diamond']
+            }
             this.container.appendChild(cellDiv)
          }
       }
@@ -60,7 +63,6 @@ export class Screen {
       const cells = this.container.children
       const changeList = gameMap.popChanges()
       changeList.forEach((change) => {
-         console.log(`${change.y} ${gameMap.dimensions.width} ${change.x}`)
          cells[(change.y*gameMap.dimensions.width)+change.x].classList = "cell"
          cells[(change.y*gameMap.dimensions.height)+change.x].classList.add(gameMap.classesAtPosition(change.x, change.y))
          if (gameMap.playerPos.x === change.x && gameMap.playerPos.y === change.y) {

@@ -25,11 +25,9 @@ export class Setup extends State {
     const startButton = document.getElementById('start')
     startButton.addEventListener('click', () => {
       const nameInput = document.getElementById('name').value  || "Pixel Pendleton"
-      console.log(`${nameInput} clicked start!`)
       this.game.player = new Player(nameInput)
       this.game.startGame();
     })
-
   }
 
   handleEvent(event) {

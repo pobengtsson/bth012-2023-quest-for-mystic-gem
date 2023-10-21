@@ -12,6 +12,11 @@
   background-image: url('../graphics/tile-swamp-1.png');
 }
 
+.diamond {
+  background-image: url('../graphics/gem.png');
+  background-size: cover;
+}
+
 .desert {
   background-image: url('../graphics/tile-desert-1.png');
 }

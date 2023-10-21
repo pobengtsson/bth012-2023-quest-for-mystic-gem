@@ -8,7 +8,7 @@ function isSamePosition (a, b) {
 export class GameOn extends State {
   async loadView() {
     this.screen.classList = ["gameon"]
-    this.screen.apply(this.game.gameMap)
+    this.screen.apply(this.game.gameMap, this.game.gemPos)
   }
 
   gemFound () {
@@ -16,7 +16,6 @@ export class GameOn extends State {
   }
 
   handleEvent (event) {
-    console.log(event)
     update_based_on_event: {
       switch (event.key) {
          case 'ArrowRight':
@@ -46,9 +45,9 @@ export class GameOn extends State {
             break
       }
       this.screen.update(this.game.gameMap)
-      if (this.gemFound()) {
-         this.game.gameWon()
-      }
-   }
+    }
+    if (this.gemFound()) {
+       this.game.gameWon()
+    }
   }
 }
