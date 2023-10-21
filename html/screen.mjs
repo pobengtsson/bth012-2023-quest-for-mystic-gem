@@ -84,7 +84,3 @@ export class Screen {
       })
    }
 }
-
-// export function formatScore(digitCount, score) {
-//    return score.toString().padStart(digitCount, "0");
-// }

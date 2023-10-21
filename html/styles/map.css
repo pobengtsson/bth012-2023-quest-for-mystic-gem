@@ -1,10 +1,8 @@
 :root {
   --block-size: 5vh;
-  /* --player-size: calc(var(--block-size) / 3 * 2); */
 }
 
 .cell.cloaked {
-  z-index: 100;
   background-image: none;
 }
 

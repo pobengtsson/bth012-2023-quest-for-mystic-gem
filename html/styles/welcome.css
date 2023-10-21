@@ -3,10 +3,6 @@ body {
   background-color: rgb(164, 118, 20)
 }
 
-.container {
-  position: relative;
-}
-
 #gameView.welcome {
   font-family: "Press Start 2P";
   color: olive;
