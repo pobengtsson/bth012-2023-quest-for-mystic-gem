@@ -1,0 +1,16 @@
+#gameView.success {
+  font-family: "Press Start 2P";
+  color: olive;
+}
+
+.gameOverImage {
+  position: relative;
+  z-index: 1; /* Ensures it's beneath the h1 */
+  width: 100%;
+  height: 600px;
+  background-image: url('../graphics/lost-3.png');
+  width: 600px;
+  border: 5px solid white;
+  margin: 20px auto;
+  background-size: cover;
+}

@@ -9,4 +9,8 @@ export class Player {
   isHealthy () {
     return this.health > 0
   }
+
+  moveOneStep () {
+    this.health -= 1
+  }
 }

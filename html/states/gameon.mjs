@@ -28,6 +28,7 @@ export class GameOn extends State {
                const nextPosition = this.game.gameMap.nextCoordinates(this.game.gameMap.playerPos, event.key)
                this.game.gameMap.moveFromTo(this.game.gameMap.playerPos, nextPosition)
                this.game.gameMap.playerPos = nextPosition
+               this.game.player.moveOneStep()
             } else {
                break update_based_on_event
             }
@@ -48,6 +49,9 @@ export class GameOn extends State {
     }
     if (this.gemFound()) {
        this.game.gameWon()
+    }
+    if (this.game.gameIsOver()) {
+      this.game.gameOver()
     }
   }
 }

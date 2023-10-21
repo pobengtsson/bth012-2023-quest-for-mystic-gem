@@ -1,6 +1,7 @@
 import { Setup } from './states/setup.mjs'
 import { GameOn } from './states/gameon.mjs'
 import { GameWon } from './states/gamewon.mjs'
+import { GameOver } from './states/gameover.mjs'
 
 export class Game {
   constructor (theWindow, screen, logger, prng = Math.random) {
@@ -20,6 +21,14 @@ export class Game {
 
   gameWon () {
     this.setState(new GameWon(this, this.screen))
+  }
+
+  gameOver () {
+    this.setState(new GameOver(this, this.screen))
+  }
+
+  gameIsOver () {
+    return !this.player.isHealthy()
   }
 
   async setState(newState) {
