@@ -14,3 +14,14 @@
   margin: 20px auto;
   background-size: cover;
 }
+
+.container h1 {
+  display: flex;
+  width: 57%;
+  justify-content: space-between;
+}
+
+ .container h1 span:nth-child(2) {
+   background-color: blue;
+   width: auto;
+}

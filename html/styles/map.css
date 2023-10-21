@@ -67,13 +67,8 @@ body {
 }
 
 .player {
-  /* height: var(--player-size);
-  width: var(--player-size);
-  border-radius: 50%;
-  background-color: #ffea00; */
   width: var(--block-size);
   height: var(--block-size);
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   margin: auto;
