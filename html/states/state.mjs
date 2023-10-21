@@ -8,5 +8,8 @@ export class State {
   }
 
   loadView () { }
-  handleEvent (event) { }
+  handleEvent (event) {
+    event.preventDefault()
+    event.stopPropagation()
+  }
 }
