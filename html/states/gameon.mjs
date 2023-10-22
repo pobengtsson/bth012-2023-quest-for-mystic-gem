@@ -8,6 +8,9 @@ export class GameOn extends State {
   async loadView() {
     this.screen.classList = ["gameon"]
     this.screen.apply(this.game.gameMap, this.game.gemPos)
+    this.game.gameMap.tileAt(this.game.gameMap.playerPos).isVisited = true
+    this.game.gameMap.startPeek(this.game.gameMap.playerPos, this.game.gameMap.playerPos)
+    this.screen.update(this.game.gameMap)
     this.screen.updateHealth(this.game.player.health)
   }
 
