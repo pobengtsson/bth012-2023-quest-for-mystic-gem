@@ -60,11 +60,15 @@ p {
   width: 150px;
   height: 50px;
   font-size: 20px;
-  background-color: green;
+  /* background-color: green; */
+  animation: rainbow 10s infinite linear;
   color: white;
-  border: 4px;
-  outline: none;
+  /* outline: none; */
   cursor: pointer;
+  border-width: 4px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: darkolivegreen;
 }
 
 #start {
@@ -74,4 +78,14 @@ p {
 
 #start:hover {
   opacity: 1.0;
+}
+
+
+@keyframes rainbow {
+  0%, 100% {
+    background-color: hsl(1, 100%, 50%);
+  }
+  50% {
+    background-color: hsl(124, 100%, 50%);
+  }
 }

@@ -13,4 +13,5 @@
   border: 5px solid white;
   margin: 20px auto;
   background-size: cover;
+  animation: fadeInEffect 2s forwards;
 }

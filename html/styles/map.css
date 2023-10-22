@@ -4,6 +4,11 @@
 
 .cell.cloaked {
   background-image: none;
+  animation: fadeInPeek 2s forwards;
+}
+.cell.peek {
+  opacity: 0.3;
+  animation: fadeInPeek 2s forwards;
 }
 
 .swamp {
@@ -36,7 +41,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* background-color: black; */
 }
 
 #gameView.gameon {
@@ -50,7 +54,7 @@ body {
   grid-template-columns: repeat(15, var(--block-size));
   grid-template-rows: repeat(15, var(--block-size));
   gap: 0px;
-  /* background-color: black; */
+  background-color: black;
 }
 
 .cell {
@@ -128,4 +132,9 @@ body {
   margin: auto;
   background-image: url('../graphics/message-bg.png');
   background-size: contain;
+}
+
+
+#msgBoard {
+  animation: fadeInEffect 2s forwards;
 }
