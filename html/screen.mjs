@@ -94,19 +94,16 @@ export class Screen {
    update(gameMap) {
       const cells = this.container.children
       const changeList = gameMap.popChanges()
+      const idx = (c) => (c.y*gameMap.dimensions.width)+c.x
       changeList.forEach((change) => {
-         cells[(change.y*gameMap.dimensions.width)+change.x].classList = "cell"
-         cells[(change.y*gameMap.dimensions.height)+change.x].classList.add(gameMap.classesAtPosition(change.x, change.y))
+         cells[idx(change)].classList = "cell"
+         cells[idx(change)].classList.add(...gameMap.classesAtPosition(change.x, change.y, change.peek))
          if (gameMap.playerPos.x === change.x && gameMap.playerPos.y === change.y) {
             cells[(change.y*gameMap.dimensions.height)+change.x].classList = ['player']
          }
       })
    }
-   /*
-   { text: '',
-      actions: []  // if empty ok is added
-   }
-   */
+
    processActionMessages(msg, done) {
       const msgTxt = this.document.getElementById('message')
       msgTxt.innerHTML = msg.txt

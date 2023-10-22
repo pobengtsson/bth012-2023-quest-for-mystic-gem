@@ -19,7 +19,7 @@ export class Monster extends NonPlayerCharacter {
     console.log(`monster: ${this.species} damage: ${this.damage}`)
     return {
       txt: `Oh no, a ${this.species.toUpperCase()}!!
-You cannot escape and have to fight the monster.
+You cannot escape. You have to fight the monster.
 In the fight you get hurt and loose ${this.damage} in health.`,
       action: () => {
         player.hurt(this.damage)
