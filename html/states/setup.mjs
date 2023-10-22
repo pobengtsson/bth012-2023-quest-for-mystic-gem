@@ -1,12 +1,6 @@
-import { GameMap } from '../gamemap.mjs'
+import { GameMap, randomPosition } from '../gamemap.mjs'
 import { State } from './state.mjs'
 import { Player } from '../player.mjs'
-
-function randomPosition (dim, prng) {
-  const x = Math.floor(prng() * dim.width)
-  const y = Math.floor(prng() * dim.height)
-  return { x, y } // NOTE: object property shorthand, same as writing { x: x, y: y}
-}
 
 export class Setup extends State {
   async loadView () {
@@ -28,11 +22,4 @@ export class Setup extends State {
       this.game.startGame();
     })
   }
-
-  // The default implementation in State is enough so this code can be removed 
-  /*
-  handleEvent(event) {
-    // game is started by clicking the button
-  }
-  */
 }

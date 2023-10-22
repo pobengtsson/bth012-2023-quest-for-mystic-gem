@@ -13,4 +13,13 @@ export class Player {
   moveOneStep () {
     this.health -= 1
   }
+
+  hurt(damage) {
+    console.log(`Before: ${this.health} damage: ${damage} after: ${this.health - damage}`)
+    this.health -= damage
+  }
+  heal(healing) {
+    console.log(`Before: ${this.health} heal: ${healing} after: ${this.health - healing}`)
+    this.health += healing
+  }
 }

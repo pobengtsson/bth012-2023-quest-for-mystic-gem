@@ -1,5 +1,4 @@
 import { State } from './state.mjs'
-import { GameWon } from './gamewon.mjs'
 
 function isSamePosition (a, b) {
   return a.x === b.x && a.y === b.y
@@ -30,6 +29,7 @@ export class GameOn extends State {
                this.game.gameMap.moveFromTo(this.game.gameMap.playerPos, nextPosition)
                this.game.gameMap.playerPos = nextPosition
                this.game.player.moveOneStep()
+               this.processNpcs(this.game.gameMap.tileAt(nextPosition))
             } else {
                break update_based_on_event
             }
@@ -54,6 +54,17 @@ export class GameOn extends State {
     }
     if (this.game.gameIsOver()) {
       this.game.gameOver()
+    }
+  }
+
+  processNpcs (tile) {
+    this.game.pauseEventListener()
+    if (tile.npc) {
+      const actionMessage = tile.npc.getActionMessage(this.screen, this.game.player, this.game.gameMap, this.game.gemPos)
+      this.screen.processActionMessages(actionMessage, () => this.game.resumeEventListener())
+      delete tile.npc
+    } else {
+      this.game.resumeEventListener()
     }
   }
 }

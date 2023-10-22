@@ -1,5 +1,11 @@
 import { tileGenerator } from './tilegenerator.mjs'
 
+export function randomPosition (dim, prng) {
+  const x = Math.floor(prng() * dim.width)
+  const y = Math.floor(prng() * dim.height)
+  return { x, y } // NOTE: object property shorthand, same as writing { x: x, y: y}
+}
+
 export class GameMap {
   constructor (dimensions, tileiterator = tileGenerator()) {
     this.dimensions = dimensions
@@ -58,6 +64,14 @@ export class GameMap {
 
   classesAtPosition(x, y) {
     return this.tiles[y][x].terrain
+  }
+
+  terrainAt (pos) {
+    return this.classesAtPosition(pos.x, pos.y)
+  }
+
+  tileAt (pos) {
+    return this.tiles[pos.y][pos.x]
   }
 
     /**

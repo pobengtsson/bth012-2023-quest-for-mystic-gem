@@ -9,6 +9,10 @@ export class Game {
     this.screen = screen
     this.logger = logger
     this.prng = prng
+    this.pauseEventHandler = (event) => {
+      event.preventDefault()
+      event.stopPropagation()
+    }
   }
 
   start () {
@@ -32,23 +36,50 @@ export class Game {
   }
 
   async setState(newState) {
+    this.clearEventListener()
     this.state = newState
-    if (this.handleEvent) {
-       window.removeEventListener('keydown', this.handleEvent)
-    }
-    this.handleEvent = this.state.handleEvent.bind(this.state)
-    window.addEventListener('keydown', this.handleEvent)
+    this.setEventListener()
     try {
        await this.state.loadView()
     } catch (error) {
        console.log(error)
     }
- }
+  }
+
+  clearEventListener () {
+    if (this.handleEvent) {
+      this.window.removeEventListener('keydown', this.handleEvent)
+      delete this.handleEvent
+    }
+  }
+
+  setEventListener () {
+    this.handleEvent = this.state.handleEvent.bind(this.state)
+    window.addEventListener('keydown', this.handleEvent)
+  }
+
+  pauseEventListener () {
+    if (this.handleEvent) {
+      this.window.removeEventListener('keydown', this.handleEvent)
+      // this.window.addEventListener('keyDown', this.pauseEventHandler)
+    }
+  }
+
+  resumeEventListener () {
+    if(this.gameIsOver()) {
+      this.gameOver()
+    } else {
+      if (this.handleEvent) {
+        // this.window.removeEventListener('keydown', this.pauseEventHandler)
+        window.addEventListener('keydown', this.handleEvent)
+      }
+    }
+  }
+
 
   logCurrentState () {
     if (this.logger) {
       this.logger(`State is: ${this.state.constructor.name}`)
-      // console.log(`Game data is: ${this.map}`)
     }
   }
 }

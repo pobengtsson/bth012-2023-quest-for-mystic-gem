@@ -8,8 +8,18 @@ function scoreBarHtmlText() {
          <div>Damage</div>
          <div id="player-damage">0</div>
       </div>
+      <div id="msgBoard" class="overlay-content">
+         <div>
+            <div id="message">You meet a wanderer. Who tells you that the gem is romoured to be in the viscinity and surrounded by swamp.</div>
+            <div id="actions">
+               <button id="ok-btn" class="button">OK</button>
+            </div>
+         </div>
+      </div>
+      </div>
       `
 }
+
 
 function createScoreBarDiv () {
    // the top bar for showing scores n stuff
@@ -30,23 +40,23 @@ function styleTileBasedOn(playerPos, tilePos, diamondPos, tile) {
    if (playerPos.x === tilePos.x && playerPos.y === tilePos.y) {
       return ['player']
    }
-   if (diamondPos.x === tilePos.x && diamondPos.y === tilePos.y) {
-      return ['diamond']
+   // if (diamondPos.x === tilePos.x && diamondPos.y === tilePos.y) {
+   //    return ['diamond']
+   // }
+   if (!tile.isVisited) {
+      return [tile.terrain, 'cloaked']
    }
-   if (tile.isVisited) {
-      return [tile.terrain]
-   } else {
-      return ['cloaked']
-   }
+   return [tile.terrain]
 }
 
 function formatScore(digitCount, score) {
-   return score.toString().padStart(digitCount, "0");
+   return (score <= 0 ? 0 : score ).toString().padStart(digitCount, "0");
 }
 
 export class Screen {
-   constructor(div) {
+   constructor(document, div) {
       this.root = div
+      this.document = document
    }
 
    set classList(cssClassList) {
@@ -59,7 +69,7 @@ export class Screen {
    }
 
    updateHealth(health) {
-      const div = document.getElementById('player-health')
+      const div = this.document.getElementById('player-health')
       div.innerHTML = formatScore(4, health)
    }
 
@@ -72,7 +82,7 @@ export class Screen {
       this.root.appendChild(this.container)
       for (var i = 0; i < gameMap.tiles.length; i++) {
          for (var j = 0; j < gameMap.tiles[i].length; j++) {
-            var cellDiv = document.createElement('div')
+            var cellDiv = this.document.createElement('div')
             cellDiv.classList.add("cell")
             const styleClasses = styleTileBasedOn(gameMap.playerPos, {x: j, y: i}, diamondPos, gameMap.tiles[i][j])
             styleClasses.forEach ((styleClass) => cellDiv.classList.add(styleClass))
@@ -91,5 +101,25 @@ export class Screen {
             cells[(change.y*gameMap.dimensions.height)+change.x].classList = ['player']
          }
       })
+   }
+   /*
+   { text: '',
+      actions: []  // if empty ok is added
+   }
+   */
+   processActionMessages(msg, done) {
+      const msgTxt = this.document.getElementById('message')
+      msgTxt.innerHTML = msg.txt
+
+      const board = this.document.getElementById('msgBoard')
+
+      const okBtn = this.document.getElementById('ok-btn')
+      okBtn.addEventListener('click', () => {
+         board.style.display = 'none'
+         msg.action()
+         okBtn.parentElement.replaceChild(okBtn.cloneNode(true), okBtn)
+         done()
+      })
+      board.style.display = 'block'
    }
 }
