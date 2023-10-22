@@ -40,9 +40,10 @@ function styleTileBasedOn(playerPos, tilePos, diamondPos, tile) {
    if (playerPos.x === tilePos.x && playerPos.y === tilePos.y) {
       return ['player']
    }
-   // if (diamondPos.x === tilePos.x && diamondPos.y === tilePos.y) {
-   //    return ['diamond']
-   // }
+   // Remove the comments on the next three lines to show the diamond in the map
+   if (diamondPos.x === tilePos.x && diamondPos.y === tilePos.y) {
+      return ['diamond']
+   }
    if (!tile.isVisited) {
       return [tile.terrain, 'cloaked']
    }

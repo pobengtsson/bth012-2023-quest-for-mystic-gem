@@ -24,12 +24,14 @@ function getNpcForTile(terrain, prng) {
   if (secondRoll<.25) { return new Magician(prng) }
   if (secondRoll<.45) { return new InnKeeper(prng)}
 
-  // aha so lets generate a monster
+  // the for the rest, let's generate a monster
   switch(terrain) {
     case 'forest': return new Monster('bird', 5, 10, prng)
     case 'mountain': return new Monster('dragon', 40, 60, prng)
     case 'desert': return new Monster('snake', 1, 25, prng)
     case 'swamp': return new Monster('crocodile', 25, 35, prng)
+    default:
+      return undefined
   }
 }
 
