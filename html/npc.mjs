@@ -155,7 +155,7 @@ function getCompassDirection (from, to) {
   const index = Math.round (degrees / 45) % 8
 
   // Return the compass direction using template literals
-  return `${degrees} ${index} ${directions[index]}`//directions [index]
+  return directions[index]
 }
 
 
