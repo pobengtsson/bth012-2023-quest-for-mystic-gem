@@ -60,10 +60,8 @@ p {
   width: 150px;
   height: 50px;
   font-size: 20px;
-  /* background-color: green; */
   animation: rainbow 10s infinite linear;
   color: white;
-  /* outline: none; */
   cursor: pointer;
   border-width: 4px;
   border-radius: 10px;

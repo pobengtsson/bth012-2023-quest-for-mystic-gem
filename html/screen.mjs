@@ -10,7 +10,7 @@ function scoreBarHtmlText() {
       </div>
       <div id="msgBoard" class="overlay-content">
          <div>
-            <div id="message">You meet a wanderer. Who tells you that the gem is romoured to be in the viscinity and surrounded by swamp.</div>
+            <div id="message">Empty</div>
             <div id="actions">
                <button id="ok-btn" class="button">OK</button>
             </div>
